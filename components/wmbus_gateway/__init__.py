@@ -1,11 +1,10 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
+from esphome import final_validate
 from esphome.components.binary_sensor import BinarySensor
 from esphome.components.ssd1306_base import SSD1306
-from esphome.components.wmbus_meter import sensor
 from esphome.components.wmbus_meter.base_sensor import BaseSensor
 from esphome.const import CONF_DISPLAY_ID, CONF_ID, CONF_PAGES
-
 
 gui_ns = cg.esphome_ns.namespace("wmbus_gateway")
 DisplayManager = gui_ns.class_("DisplayManager", cg.PollingComponent)
@@ -30,13 +29,18 @@ CONFIG_SCHEMA = cv.Schema(
 )
 
 
-# Monkeypath sensor config schema allowing registering sensor
-def register_sensor_for_display(conf):
-    REGISTERED_SENSORS.append(conf[CONF_ID])
-    return conf
+def FINAL_VALIDATE_SCHEMA(config):
+    if config[CONF_PAGES]:
+        return
 
+    try:
+        sensors = final_validate.full_config.get().get_config_for_path(["sensor"])
+    except KeyError:
+        sensors = []
 
-sensor.CONFIG_SCHEMA = cv.All(sensor.CONFIG_SCHEMA, register_sensor_for_display)
+    REGISTERED_SENSORS.extend(
+        sensor["id"] for sensor in sensors if sensor.get("platform") == "wmbus_meter"
+    )
 
 
 async def to_code(config):
