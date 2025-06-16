@@ -17,19 +17,9 @@ jobs:
         with:
           yaml-file: factory.yaml
           complete-manifest: true
-      - name: Rename output binary
-        id: rename_binary
-        env:
-          from_path: ${{ steps.build_firmware.outputs.name }}/${{ steps.build_firmware.outputs.name }}.factory.bin
-          to_path: ${{ steps.build_firmware.outputs.project-name }}-${{ steps.build_firmware.outputs.project-version }}.bin
-        run: |
-          cp "${{ env.from_path }}" "${{ env.to_path }}"
-          echo "binary_path=${{ env.to_path }}" >> $GITHUB_OUTPUT
       - name: Upload binaries to release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ steps.rename_binary.outputs.binary_path }}
-      - name: Set latest tag on this release
-        run: |
-          git tag -f latest
-          git push origin latest --force
+          files: |
+            ${{ steps.build_firmware.outputs.name }}/*.factory.bin
+            ${{ steps.build_firmware.outputs.name }}/manifest.json
