@@ -2,6 +2,7 @@ packages:
   wmbus_gateway: github://IoTLabs-pl/wM-Bus-Gateway/packages/wmbus_gateway.yaml@v1.0.0
 
 esphome:
+  friendly_name: wM-Bus Gateway
 
 wifi:
   ssid: !secret wifi_ssid
