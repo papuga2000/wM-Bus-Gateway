@@ -3,7 +3,7 @@ on:
     pull_request:
 
 jobs:
-  build_and_upload:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
