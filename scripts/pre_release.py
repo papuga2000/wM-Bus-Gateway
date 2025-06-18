@@ -121,11 +121,11 @@ if __name__ == "__main__":
     replace_versions_content(last_version, new_version, args.dry_run)
 
     logger.info("Committing version update...")
-    git("commit", "-am", f'"Release {new_version}"', dry_run=args.dry_run)
+    git("commit", "-am", f'Release {new_version}', dry_run=args.dry_run)
 
     for tag in [f"{TAG_PREFIX}{new_version}", "latest"]:
         logger.info(f"Tagging with: {tag}")
         git("tag", "--force", tag, dry_run=args.dry_run)
 
     logger.info("Pushing changes...")
-    git("push", "--tags", dry_run=args.dry_run)
+    git("push", "--tags", "--force", dry_run=args.dry_run)
