@@ -23,7 +23,7 @@ def git(*args, dry_run=True):
 
 
 def get_latest_tag():
-    output = git("describe", "--tags", "--abbrev=0", dry_run=False)
+    output = git("describe", "--tags", "--abbrev=0", "--match", "v*", dry_run=False)
     return Version(output.strip().removeprefix(TAG_PREFIX))
 
 
@@ -58,7 +58,9 @@ def replace_versions_content(old_version: Version, new_version: Version, dry_run
                 new_content.splitlines(),
                 lineterm="",
             )
-            logger.info(f"Updating {file.relative_to(PARENT_DIR)} from {old_version} to {new_version}")
+            logger.info(
+                f"Updating {file.relative_to(PARENT_DIR)} from {old_version} to {new_version}"
+            )
             for line in diff:
                 logger.debug(line)
 
@@ -113,7 +115,9 @@ if __name__ == "__main__":
     else:
         new_version = getattr(last_version, f"next_{args.bump}")()
 
-    logger.info(f"New version: {new_version}")
+    input(
+        f"Press Enter to continue with version {new_version} (or Ctrl+C to cancel)..."
+    )
     replace_versions_content(last_version, new_version, args.dry_run)
 
     logger.info("Committing version update...")
@@ -124,4 +128,4 @@ if __name__ == "__main__":
         git("tag", "--force", tag, dry_run=args.dry_run)
 
     logger.info("Pushing changes...")
-    git("push", "--follow-tags", dry_run=args.dry_run)
+    git("push", "--tags", dry_run=args.dry_run)
