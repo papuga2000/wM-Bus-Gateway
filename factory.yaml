@@ -10,6 +10,9 @@ wifi:
   ap:
     ssid: IoTLabs wM-Bus Gateway
 
+ota:
+  - platform: esphome
+
 api:
 
 captive_portal:
