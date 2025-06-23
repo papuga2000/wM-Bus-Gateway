@@ -40,14 +40,14 @@ This repository contains the source code for the **wM-Bus Gateway**, a device th
      2. Open [`http://192.168.4.1`](http://192.168.4.1) in your web browser
      3. Enter your Wi-Fi credentials and click **Save**.
    - **🔵 via Improv BLE:**
-     1. Open [improv-wifi.com](https://www.improv-wifi.com/) with a device and browser supporting Bluetooth Low Energy (BLE), e.g. a mobile phone with Google Chrome or Edge.
-     2. Click **Connect device to Wi-Fi** in the `Improv via BLE` section.
+     1. Open [Web Tools](https://iotlabs.pl/tools) with a device and browser supporting Bluetooth Low Energy (BLE), e.g. a mobile phone with Google Chrome or Edge.
+     2. Click **Connect** in the `Improv via BLE` section.
      3. Select your device from the list.
      4. Follow the instructions to connect the device to your Wi-Fi network.
    - **🟠 via Improv Serial:**
      1. Connect the device to your computer using a USB cable.
-     2. Open [improv-wifi.com](https://www.improv-wifi.com/) with your computer and a browser supporting Web Serial API (e.g. Google Chrome or Edge).
-     3. Click **Connect device to Wi-Fi** in the `Improv via Serial` section.
+     2. Open [Web Tools](https://iotlabs.pl/tools) with your computer and a browser supporting Web Serial API (e.g. Google Chrome or Edge).
+     3. Click **Connect** in the `Improv via Serial` section.
      4. Select your device from the list.
      5. Follow the instructions to connect the device to your Wi-Fi network.
 3. When your device switches to the selected network (the currently connected network name is shown on a dedicated display page), go to the **ESPHome Dashboard** where you should see a newly discovered device and click the **Take Control** button.
@@ -109,7 +109,7 @@ This will adjust the value and display the correct unit.
 You may use `wmbus-gateway-esp32.factory.bin` available in the **Releases** to flash the device with factory firmware.
 
 A simple web flasher based on [ESP Web Tools](https://esphome.github.io/esp-web-tools/) is available at:  
-👉 [https://iotlabs-pl.github.io/web-flasher/](https://iotlabs-pl.github.io/web-flasher/)
+👉 [https://iotlabs.pl/tools](https://iotlabs.pl/tools)
 
 ---
 
