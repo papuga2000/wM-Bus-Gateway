@@ -48,8 +48,9 @@ class Tag(Version):
 
 
 def git(*args, dry_run=True):
+    args = tuple(map(str, args))
     if dry_run:
-        logger.info(f"Would run: git {' '.join(map(str, args))}")
+        logger.info(f"Would run: git {' '.join(args)}")
         return ""
     return run_git_command(["git", *args], cwd=PARENT_DIR)
 
