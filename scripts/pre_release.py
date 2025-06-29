@@ -85,4 +85,5 @@ if __name__ == "__main__":
         git("tag", "--force", tag, dry_run=args.dry_run)
 
     logger.info("Pushing changes...")
+    git("push", dry_run=args.dry_run)
     git("push", "--tags", "--force", dry_run=args.dry_run)
