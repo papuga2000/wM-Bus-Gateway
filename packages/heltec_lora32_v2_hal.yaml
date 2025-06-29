@@ -5,6 +5,7 @@ esphome:
 esp32:
   board: heltec_wifi_lora_32_V2
   flash_size: 8MB
+  cpu_frequency: 240MHz
   framework:
     type: esp-idf
 
@@ -45,7 +46,7 @@ output:
 
 light:
   - platform: status_led
-    id: status_led_
+    id: wmbus_gateway_status_led
     pin: GPIO25
 
 binary_sensor:

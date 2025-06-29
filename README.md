@@ -1,5 +1,4 @@
-wM-Bus Gateway
-==============
+# wM-Bus Gateway
 
 This repository contains the source code for the **wM-Bus Gateway**, a device that integrates Wireless M-Bus media meters with other systems.
 
@@ -54,24 +53,27 @@ This repository contains the source code for the **wM-Bus Gateway**, a device th
 4. In the following popup window, type the desired device name and click **Take Control**.
 5. In the next two popup windows, click **Skip** and **Close**.
 
-> 💡 **Tip:**  
-> You may also install new firmware at this point, but ESPHome will build factory firmware which is already installed on the device.
+   > 💡 **Tip:**  
+   > You may also install new firmware at this point, but ESPHome will build factory firmware which is already installed on the device.
 
 6. Click the **Logs** button for the already added device in the ESPHome Dashboard and choose the appropriate connection method (wireless if not connected via USB, or wired if you are).
 
-> 🖱️ **Tip:**  
-> For testing, you may click the top button on the device to switch display pages and see logs about these events.
+   > 🖱️ **Tip:**  
+   > For testing, you may click the top button on the device to switch display pages and see logs about these events.
 
    Wait some time to receive a wM-Bus datagram and see it in the logs. You will get logs like this:
+
    ```
    [16:29:10][W][main:057]: Meter ID: 12345678...
    [16:29:10][W][main:060]: Frame: https://wmbusmeters.org/analyze/be44ed1...
    ```
+
 7. Click or copy and paste the link from the logs to your browser to analyze the received datagram. At [wmbusmeters.org](https://wmbusmeters.org/analyze/) you will be able to check your decryption key (if your meter is encrypted) and see all data fields available to decode from the datagram.
 
 8. When you identify your meter ID, decryption key, and fields you are interested in, you can edit the device configuration in the ESPHome Dashboard.
 
    - In the section `wmbus_meter` set:
+
      - `meter_id` to your meter ID
      - `type` to the driver name in wmbusmeters
      - optionally `decryption_key`
@@ -95,12 +97,72 @@ This repository contains the source code for the **wM-Bus Gateway**, a device th
 
 You can change the visible unit of measurement in the `sensor` section of the ESPHome configuration.  
 For example, to change from `kWh` to `MWh`:
+
 ```yaml
-unit_of_measurement: 'MWh'
+unit_of_measurement: "MWh"
 filters:
   - multiply: 0.001
 ```
+
 This will adjust the value and display the correct unit.
+
+### How to change built-in LED settings?
+
+By default, the built-in LED blinks (10 blinks for one second) when a wM-Bus datagram is received.
+
+You can change this behavior by overriding the `on_frame` automation in the `wmbus_radio` section of the ESPHome configuration. For example, to disable it completely you may use following cofiguration:
+
+```yaml
+wmbus_radio:
+  on_frame: !remove
+```
+
+If you want to change the LED blinking pattern, you can use the following example:
+
+```yaml
+wmbus_radio:
+  on_frame:
+    then:
+      - repeat:
+          count: 2
+          then:
+            - light.turn_on: wmbus_gateway_status_led
+            - delay: 500ms
+            - light.turn_off: wmbus_gateway_status_led
+            - delay: 500ms
+```
+
+It will blink the LED twice with a 500ms interval.
+
+You may also blink LED for specific meter datagrams. For example, to blink the LED only for a specific meter ID:
+
+```yaml
+wmbus_radio:
+  on_frame: !remove
+
+wmbus_meter:
+  - id: my_meter
+    ...
+    on_telegram:
+      then:
+        - turn_on: wmbus_gateway_status_led
+        - delay: 100ms
+        - turn_off: wmbus_gateway_status_led
+  - id: another_meter
+    ...
+    on_telegram:
+      then:
+        - repeat:
+            count: 5
+            then:
+              - turn_on: wmbus_gateway_status_led
+              - delay: 100ms
+              - turn_off: wmbus_gateway_status_led
+              - delay: 300ms
+```
+
+In this example, the LED will blink once for `my_meter` and five times for `another_meter`.
+For more complex LED patterns, you may use the [`script` component](https://esphome.io/components/script.html) in ESPHome. It allows you to define parameters (number of blinks, delay, etc.) and create reusable fragments of code for different events as demonstrated in ESPHome documentation.
 
 ---
 
