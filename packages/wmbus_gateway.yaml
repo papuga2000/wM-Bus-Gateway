@@ -41,7 +41,7 @@ wmbus_radio:
             count: 20
             then:
               - light.control:
-                  id: status_led_
+                  id: wmbus_gateway_status_led
                   state: !lambda return iteration % 2 == 0;
               - delay: 50ms
 
