@@ -93,8 +93,17 @@ This repository contains the source code for the **wM-Bus Gateway**, a device th
 
 ## ❓ FAQ
 
-### How to change unit of measurement?
+<details>
+<summary>
+<h3 style="display:inline-block">Where I can find example ESPHome <code>yaml</code> configuration?</h3>
+</summary>
+You can find the example in the `blueprint.yaml` file in the root directory of this repository. This file is also automatically imported into your ESPHome Dashboard when you add the device for the first time.
+</details>
 
+<details>
+<summary>
+<h3 style="display:inline-block">How to change unit of measurement?</h3>
+</summary>
 You can change the visible unit of measurement in the `sensor` section of the ESPHome configuration.  
 For example, to change from `kWh` to `MWh`:
 
@@ -105,8 +114,12 @@ filters:
 ```
 
 This will adjust the value and display the correct unit.
+</details>
 
-### How to change built-in LED settings?
+<details>
+<summary>
+<h3 style="display:inline-block">How to change built-in LED settings?</h3>
+</summary>
 
 By default, the built-in LED blinks (10 blinks for one second) when a wM-Bus datagram is received.
 
@@ -163,6 +176,7 @@ wmbus_meter:
 
 In this example, the LED will blink once for `my_meter` and five times for `another_meter`.
 For more complex LED patterns, you may use the [`script` component](https://esphome.io/components/script.html) in ESPHome. It allows you to define parameters (number of blinks, delay, etc.) and create reusable fragments of code for different events as demonstrated in ESPHome documentation.
+</details>
 
 ---
 
