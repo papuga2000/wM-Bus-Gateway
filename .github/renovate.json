@@ -1,5 +1,6 @@
 {
   "extends": ["config:recommended"],
+  "draftPr": true,
   "customManagers": [
     {
       "managerFilePatterns": ["packages/version.yaml"],
