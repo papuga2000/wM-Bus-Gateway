@@ -41,7 +41,7 @@ display:
 output:
   - platform: gpio
     id: vext_output
-    pin: GPIO21
+    pin: GPIO43
     inverted: True
 
 light:
