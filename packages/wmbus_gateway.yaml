@@ -1,6 +1,6 @@
 packages:
   hal: !include
-    file: heltec_lora32_v2_hal.yaml
+    file: lilygo_t3_s3.yaml
   resources: !include
     file: resources.yaml
   version: !include
@@ -9,7 +9,7 @@ packages:
 external_components:
   - source: 
       type: git
-      url: https://github.com/IoTLabs-pl/ESPHome-Components
+      url: https://github.com/papuga2000/ESPHome-Components
       ref: ${esphome_components_version}
     components:
       - wmbus_common
@@ -17,7 +17,7 @@ external_components:
       - wmbus_meter
   - source: 
       type: git
-      url: https://github.com/IoTLabs-pl/wM-Bus-Gateway
+      url: https://github.com/papuga2000/wM-Bus-Gateway
       ref: ${wmbus_gateway_version}
     components:
       - wmbus_gateway
@@ -32,9 +32,9 @@ esphome:
 
 wmbus_radio:
   radio_type: SX1276
-  cs_pin: GPIO18
-  reset_pin: GPIO14
-  irq_pin: GPIO35
+  cs_pin: GPIO7
+  reset_pin: GPIO8
+  irq_pin: GPIO33
   on_frame:
     - then:
         - repeat:
