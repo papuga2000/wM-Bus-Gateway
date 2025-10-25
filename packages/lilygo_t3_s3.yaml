@@ -15,10 +15,10 @@ logger:
 
 spi:
   clk_pin:
-    number: GPIO5
+    number: GPIO05
     ignore_strapping_warning: true
-  mosi_pin: GPIO6
-  miso_pin: GPIO3
+  mosi_pin: GPIO06
+  miso_pin: GPIO03
 
 i2c:
   frequency: 800kHz
@@ -35,7 +35,7 @@ display:
     auto_clear_enabled: True
     contrast: 50%
     reset_pin:
-      number: GPIO8
+      number: GPIO08
     update_interval: never
 
 output:
@@ -53,7 +53,7 @@ binary_sensor:
   - platform: gpio
     id: ext_button
     pin:
-      number: GPIO0
+      number: GPIO00
       ignore_strapping_warning: true
       mode: input
       inverted: True
