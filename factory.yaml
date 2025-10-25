@@ -18,7 +18,7 @@ api:
 captive_portal:
 
 dashboard_import:
-  package_import_url: github://IoTLabs-pl/wM-Bus-Gateway/blueprint.yaml@latest
+  package_import_url: github://papuga2000/wM-Bus-Gateway/blueprint.yaml@latest
   import_full_config: true
 
 web_server:
