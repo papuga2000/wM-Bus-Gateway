@@ -16,7 +16,6 @@ logger:
 spi:
   clk_pin:
     number: GPIO05
- #   ignore_strapping_warning: true
   mosi_pin: GPIO06
   miso_pin: GPIO03
 
