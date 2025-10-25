@@ -15,10 +15,10 @@ font:
       
 image:
   - id: qr_code
-    file: https://github.com/IoTLabs-pl/wM-Bus-Gateway/blob/${wmbus_gateway_version}/resources/qrcode.png?raw=true
+    file: https://github.com/papuga2000/wM-Bus-Gateway/blob/${wmbus_gateway_version}/resources/qrcode.png?raw=true
     type: binary
     invert_alpha: True
   - id: logo
-    file: https://github.com/IoTLabs-pl/wM-Bus-Gateway/blob/${wmbus_gateway_version}/resources/logo.png?raw=true
+    file: https://github.com/papuga2000/wM-Bus-Gateway/blob/${wmbus_gateway_version}/resources/logo.png?raw=true
     type: binary
     invert_alpha: True
