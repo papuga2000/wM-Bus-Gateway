@@ -3,8 +3,8 @@ esphome:
     upload_speed: 921600
 
 esp32:
-  board: heltec_wifi_lora_32_V2
-  flash_size: 8MB
+  board: lilygo-t3-s3
+  flash_size: 4MB
   cpu_frequency: 240MHz
   framework:
     type: esp-idf
@@ -17,15 +17,15 @@ spi:
   clk_pin:
     number: GPIO5
     ignore_strapping_warning: true
-  mosi_pin: GPIO27
-  miso_pin: GPIO19
+  mosi_pin: GPIO6
+  miso_pin: GPIO3
 
 i2c:
   frequency: 800kHz
   scan: False
-  sda: GPIO4
+  sda: GPIO18
   scl:
-    number: GPIO15
+    number: GPIO17
     ignore_strapping_warning: true
 
 display:
@@ -35,7 +35,7 @@ display:
     auto_clear_enabled: True
     contrast: 50%
     reset_pin:
-      number: GPIO16
+      number: GPIO8
     update_interval: never
 
 output:
@@ -47,7 +47,7 @@ output:
 light:
   - platform: status_led
     id: wmbus_gateway_status_led
-    pin: GPIO25
+    pin: GPIO37
 
 binary_sensor:
   - platform: gpio
