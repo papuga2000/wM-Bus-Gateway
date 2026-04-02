@@ -4,7 +4,7 @@ packages:
   resources: !include
     file: resources.yaml
   version: !include
-    file: version.yaml
+#    file: version.yaml
 
 external_components:
   - source: 
