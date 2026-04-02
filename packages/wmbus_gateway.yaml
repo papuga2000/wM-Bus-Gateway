@@ -9,7 +9,7 @@ packages:
 external_components:
   - source: 
       type: git
-      url: https://github.com/papuga2000/ESPHome-Components
+      url: https://github.com/IoTLabs-pl/ESPHome-Components
       ref: ${esphome_components_version}
     components:
       - wmbus_common
