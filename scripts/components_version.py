@@ -19,7 +19,7 @@ from urllib3 import request
 logger = getLogger(__name__)
 
 
-REPO = "IoTLabs-pl/ESPHome-components"
+REPO = "papuga2000/ESPHome-components"
 YAML_KEY = "esphome_components_version"
 
 
