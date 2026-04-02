@@ -17,7 +17,7 @@ external_components:
       - wmbus_meter
   - source: 
       type: git
-      url: https://github.com/papuga2000/wM-Bus-Gateway
+      url: https://github.com/IoTLabs-pl/wM-Bus-Gateway
       ref: ${wmbus_gateway_version}
     components:
       - wmbus_gateway
